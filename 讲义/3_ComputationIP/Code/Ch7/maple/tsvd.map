@@ -1,0 +1,28 @@
+#    tsvd.map  (MAPLE file)
+#  To execute, enter "read `tsvd.map`". 
+#  Be sure to use "backward quotes" (`).
+#
+#  Derive asymptotic expressions related to expected solution error
+#  and expected prediction error for TSVD regularization.
+
+#  Asymptotic expected solution error for TSVD regularization.
+#  sigdn denotes sigma^2/n.  The index m is the regularization parameter.
+
+  assume(b>0);
+  assume(c>0);
+  assume(p>1);
+  assume(q>1);
+  assume(sigdn>0);
+  m := (b*c)^(1/(p+q)) * sigdn^(-1/(p+q));
+  I1 := m^(1-q)/(q-1);
+  I2 := m^(p+1)/(p+1);
+  ES := b * I1 + sigdn/c * I2;
+  ES := simplify(expand(ES));
+
+#  Asymptotic expected prediction error for TSVD regularization.
+
+  I3 := m^(1-p-q)/(q-1);
+  EP := b*c*I3 + sigdn*m;
+  EP := simplify(expand(EP));
+
+

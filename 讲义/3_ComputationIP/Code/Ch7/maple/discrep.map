@@ -1,0 +1,29 @@
+#    discrep.map  (MAPLE file)
+#  To execute, enter "read `discrep.map`". 
+#  Be sure to use "backward quotes" (`).
+#
+#  Derive asymptotic expressions related to the discrepancy principle
+#  for Tikhonov regularization.
+
+#  Asymptotic expected squared data residual norm for Tikhonov regularization.
+#  alpha is the regularization parameter.
+
+  restart;
+  assume(b>0);
+  assume(c>0);
+  assume(p>1);
+  assume(q>1);
+  assume(sigma>0);
+  assume(n>1);
+  assume(I1>0);
+  assume(I2>0);
+  assume(I3>0);
+  assume(alpha>0);
+  S1 := (alpha/c)^((-p+q-1)/p) * I1;
+  S2 := (alpha/c)^((-p-1)/p) * I2;
+  S3 := (alpha/c)^(-1/p) * I3;
+  FD := alpha^2*b/c*S1 - sigdn * (2*alpha/c*S2 + S3);
+  FD := simplify(expand(FD));
+  alphaD := solve(FD=0, alpha);
+  alphaD := simplify(expand(alphaD),exp);
+  alphaD := simplify(combine(alphaD,'power'));

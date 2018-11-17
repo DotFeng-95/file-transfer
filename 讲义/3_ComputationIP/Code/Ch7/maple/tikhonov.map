@@ -1,0 +1,46 @@
+#    tikhonov.map  (MAPLE file)
+#  To execute, enter "read `tikhonov.map`". 
+#  Be sure to use "backward quotes" (`).
+#
+#  Derive asymptotic expressions related to expected solution error
+#  and expected prediction error for Tikhonov regularization.
+
+#  Asymptotic expected solution error for Tikhonov regularization.
+#  sigdn denotes sigma^2/n.  alpha the regularization parameter.
+
+  restart;
+  assume(b>0);
+  assume(c>0);
+  assume(p>1);
+  assume(q>1);
+  assume(sigdn>0);
+  assume(I1>0);
+  assume(I2>0);
+  assume(I3>0);
+  assume(I4>0);
+  assume(alpha>0);
+  S1 := (alpha/c)^((-2*p+q-1)/p) * I1;
+  S2 := (alpha/c)^((-2*p-1)/p) * I2;
+  ESprime := alpha*b/c^2*S1 - sigdn/c^2*S2;
+  ESprime := simplify(expand(ESprime));
+  alpha := solve(ESprime=0, alpha);
+  alpha := simplify(expand(alpha),exp);
+  alpha := simplify(combine(alpha,'power'));
+  S3 := (alpha/c)^((-2*p+q-1)/p) * I3;
+  S4 := (alpha/c)^((-p-1)/p) * I4;
+  ES := alpha^2*b/c^2 * S3 + sigdn/c * S4;
+  ES := simplify(expand(ES));
+  ES := factor(ES);
+
+#  Asymptotic expected prediction error for Tikhonov regularization.
+
+  unassign('alpha');
+  assume(I5>0);
+  assume(I6>0);
+  S5 := (alpha/c)^((-p+q-1)/p) * I5;
+  S6 := (alpha/c)^((-p-1)/p) * I6;
+  EPprime := alpha*b/c*S5 - sigdn/c*S6;
+  EPprime := simplify(expand(EPprime));
+  alphaP := solve(EPprime=0, alpha);
+  alphaP := simplify(expand(alphaP),exp);
+  alphaP := simplify(combine(alphaP,'power'));
