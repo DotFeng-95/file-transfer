@@ -1,0 +1,208 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{amsmath}
+\numberwithin{equation}{section}
+\title{求解不适定问题}
+\newtheorem{theorem}{\hspace{2em}定理}[section]
+\newtheorem{definition}{\hspace{2em}定义}[section]
+
+\author{DotFeng}
+\date{\today}
+
+\bibliography{plain}
+
+\begin{document}
+
+\maketitle
+
+
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{求解不适定问题的正则化方法}
+因为偏微分方程的大部分反问题都可以归结为求解第一类算子方程,而第一类算子方程被证明是不适定的.正则化方法就是对不适定方程建立一个稳定的近似解的方法.本节介绍了求解不适定问题的一系列正则化方法,这些方法是求解反问题的基础.
+\subsection{预备知识}
+\subsubsection{不适定问题}
+首先引入不适定问题的定义.
+
+\begin{definition}
+设$K:U\subset X\to Y$,其中$X,Y$是赋范空间.方程$Kx=y$叫做适定的,是指$K$是双射,且$K^{-1}:Y\to U$是连续的,否则,就叫做不适定的.
+\end{definition}
+
+由以上的定义可知,适定需同时满足下列三个条件:
+\begin{itemize}
+\item 若对任一个$y\in Y$,至少存在一个$x\in U$,使得$Kx=y$,称为解的存在性(Existence);
+\item 设$y_{1},y_{2}\in Y$,若对$x_{1},x_{2}\in U$分别是$Kx=y$对应于$y_{1}\ne y_{2}$的解,则必有$x_{1}\ne x_{2}$,称为解的唯一性(Uniqueness);
+\item 解$z$相对于空间偶$(U,Y)$而言是稳定的，称为解的稳定性(Stability),即对于任给的$\epsilon > 0$,存在$\delta(\epsilon)>0$,只要
+\begin{equation}
+\rho_{U}(x_{1},x_{2})\le \delta(\epsilon),x_{1},x_{2}\in U
+\end{equation}
+就有
+\begin{equation}
+\rho_{Y}(y_{1},y_{2})< \epsilon,Tx_{1}=y_{1},Tx_{2}=y_{2}
+\end{equation}
+\end{itemize}
+
+
+反之,如果上述三个条件中至少有一个不能满足，就称其为不适定的(ill-posed),由以上定义可知，不适定方程有三种类型：
+\begin{itemize}
+\item $K$不是满射,即存在$y\in Y$,对任意$x\in U$有$Kx\ne y$;
+\item $K$不是单射,即存在$u,v\in U$,且$u\ne v$使得$Ku=Kv$;
+\item $K^{-1}$不连续,即方程$Kx=y$的解不连续依赖于数值$f$.
+\end{itemize}
+
+在实际问题中,方程右端的数据项一般通过测量获得,精确的数据$y$并不知道,只知道被误差扰动后的测量数据$y^{\delta}$,及其误差水平$\delta >0$,即
+\begin{equation}
+\Vert y-y^{\delta}\Vert \le \delta,y^{\delta}\in Y. 
+\end{equation}
+我们的目标是求解扰动后的方程
+\begin{equation}
+Kx^{\delta}=y^{\delta}.
+\end{equation}
+通常该方程是不可解的，因为测量数据$y^{\delta}$很可能不在$K$的值域$K(X)$中.于是我们希望找到一个近似解$x^{\delta}\in X$,一方面它能足够接近精确解$x$,另一方面它能连续的依赖于数据$y^{\delta}.$
+
+\subsubsection{正交投影}
+本节主要叙述关于正交投影的三个定理.
+首先定义一些记号:$X,Y$为Hilbert空间,$L(X,Y)$表示从$X$到$Y$的线性有界算子空间.定义$L(X):=L(X,X)$.
+对于$T\in L(X,Y)$,零空间与像空间分别记作$N(T):=\{ \varphi \in X:T\varphi =0\}$和$R(T):=T(X)$
+\begin{theorem}
+令$U$为$X$的一个凸的线性闭子空间.那么对于每一个$\varphi \in X$,存在唯一的一个向量$\psi \in U$,满足
+\begin{equation}
+\Vert \psi -\varphi \Vert =\inf_{u\in U}\Vert u-\varphi \Vert.
+\end{equation}
+$\psi$称为$\varphi$的最佳逼近.$\psi$是$U$中唯一满足此性质的向量,并且
+\begin{equation}
+\langle \varphi -\psi ,u\rangle =0\ \mbox{对于所有的} u\in U   \label{orthogonal}
+\end{equation}
+\end{theorem}
+
+\begin{theorem} \label{orthogonal theorem}
+令$U\ne \{ 0\}$是$X$的闭线性子空间,令$P:X\to U$表示到$U$的正交投影,其将一个向量$\varphi \in X$映射到其在$U$上的最佳逼近.
+则$P$是一个线性算子,且$\Vert P\Vert =1$
+满足
+\begin{equation}
+P^{2}=P \ \mbox{以及} \ P^{\star}=P.
+\end{equation}
+$I-P$表示到闭子空间$U^{\bot}$上的正交投影.
+其中$U^{\bot}:=\{v\in X:\langle v,u\rangle =0,\mbox{对于任意的}u\in U\}$
+\end{theorem}
+
+证明：因为$P\varphi =\varphi$对于任意的$\varphi \in U$,得$P^{2}=P$,及$\Vert P\Vert \ge 1.$
+在(\ref{orthogonal})中,令$u=P\varphi$,得$\Vert \varphi \Vert ^{2}=\Vert P\varphi \Vert ^{2}+\Vert (I-P)\varphi \Vert ^{2}.$因此$\Vert P\Vert \le 1.$
+又因为
+\begin{equation}
+\langle P\varphi ,\psi \rangle =\langle P\varphi ,P\psi +(I-P)\psi \rangle =\langle P\varphi ,P\psi \rangle
+\end{equation}
+又$\langle \varphi ,P\psi \rangle =\langle P\varphi ,P\psi \rangle$,得算子$P$是自共轭的.
+又由内积的线性性与连续性,易得$U^{\bot}$是$X$的闭线性子空间.
+且由(\ref{orthogonal})可得,$(I-P)\varphi \in U^{\bot}$,其中$\varphi \in X.$
+更进一步的,$\langle \varphi -(I-P)\varphi,V \rangle =\langle P\varphi ,v \rangle =0$,对所有的$v \in U^{\bot}.$则根据定理(\ref{orthogonal theorem})可知,$(I-P)\varphi$是$\varphi$在$U^{\bot}$中的最佳逼近元.
+
+\begin{theorem} \label{N and R}
+如果$T\in L(X,Y)$,那么有
+\begin{equation}
+N(T)=R(T^{\star})^{\bot} \ \ \mbox{以及} \  \  \overline{R(T)}=N(T^{\star})^{\bot}
+\end{equation}
+\end{theorem}
+
+证明：如果$\varphi \in N(T)$,则对所有的$\psi \in Y$
+有$\langle \varphi ,T^{\star}\psi \rangle =\langle T\varphi ,\psi \rangle =0$
+则$\varphi \in R(T^{\star})^{\bot}$.因此,$N(T)\subset R(T^{\star})^{\bot}$
+如果$\varphi \in R(T^{\star})^{\bot}$,则对所有的$\psi \in Y$
+那么,$0=\langle \varphi ,T^{\star}\psi \rangle =\langle T\varphi ,\psi \rangle$
+因此$T\varphi =0$,即$\varphi \in N(T)$,则$R(T^{\star})^{\bot}\subset N(T)$
+
+\subsubsection{Moore-Penrose 广义逆}
+考虑算子方程
+\begin{equation}
+T\varphi =g \label{operator equation}
+\end{equation}
+其中算子$T\in L(X,Y)$.此时既不假设算子$T$是单射，也不假设$g\in R(T).$在这种假设下，我们先来定义，何为算子方程(\ref{operator equation})的解.这就引出了算子$T$的逆的概念.
+
+\begin{definition}
+$\varphi$称为方程(\ref{operator equation})的最小二乘解，如果满足
+\begin{equation}
+\Vert T\varphi -g\Vert =inf\{\Vert T\psi -g\Vert :\psi \in X\}. \label{least-squares solution}
+\end{equation}
+$\varphi \in X$被称为方程(\ref{operator equation})的最佳近似解，如果$\varphi$是方程(\ref{operator equation})的最小二乘解，且满足
+\begin{equation}
+\Vert \varphi \Vert =inf\{ \Vert \psi \Vert :\psi \mbox{是方程(\ref{operator equation})的最佳近似解}\}.
+\end{equation}
+\end{definition}
+
+\begin{theorem} \label{projection}
+用$Q:Y\to \overline{R(T)}$表示投影到$\overline{R(T)}$上面的正交投影.则下列条件是等价的：
+%\begin{equation}
+\begin{align}
+&\varphi \mbox{是}T\varphi =g\mbox{的最小二乘解}.\label{1} \\
+&T\varphi =Qg \label{2}\\
+&T^{\ast}T\varphi =T^{\ast}g \label{normal equation} 
+\end{align}
+%\end{equation}
+\end{theorem}
+
+证明:因为$\langle T\varphi -Qg,(I-Q)g\rangle =0,$根据定理(\ref{orthogonal theorem})有
+\begin{equation}
+\Vert T\varphi -g\Vert ^{2}=\Vert T\varphi -Qg\Vert ^{2}+\Vert Qg -g\Vert ^{2}.
+\end{equation}
+这表明,由(\ref{2})可以推出(\ref{1}).
+反之亦然,如果$\varphi_{0}$是一个最小二乘解,则$\varphi _{0}$是函数$\varphi \mapsto \Vert T\varphi -Qg\Vert.$的最小值.
+又根据$Q$的定义,$\inf_{\varphi \in X} \Vert T\varphi -Qg\Vert =0,\varphi$必定满足(\ref{2}).
+
+又根据定理(\ref{orthogonal theorem})、(\ref{N and R}),我们有$N(T^{\star})=R(T)^{\bot}=R(I-Q),$
+由此可推得等式$T^{\star}(I-Q)$成立.因此由(\ref{2})可得(\ref{normal equation})成立.
+反之,如果(\ref{normal equation})成立,则有$T\varphi -g\in N(T^{\star})=R(T)^{\bot}.$
+因此$0=Q(T\varphi -g)=T\varphi -Qg.$
+
+方程(\ref{normal equation})称为方程(\ref{operator equation})的正规方程.注意到一个方程的最小二乘解并不一定存在,因为(\ref{least-squares solution})中的下确界并不一定可以取到.由定理\ref{projection}可得,方程(\ref{operator equation})的最小二乘解存在，当且仅当$g\in R(T)+R(T)^{\perp}$
+
+注：如果$\varphi_{0}$是一个最小二乘解，则其并不唯一,若$N(T)$中除去零元素还有其他元素.
+此时最小二乘解可写成集合$\{ \varphi_{0}+u:u\in N(T)\}$
+
+\begin{definition}
+算子$T$的$Moore-Penrose$广义逆$T^{\dag}$定义在$D(T^{\dag}):=R(T)+R(T)^{\perp}$上,其将$g\in D(T^{\dag})$映到算子方程(\ref{operator equation})的最佳近似解.
+\end{definition}
+
+显然,$T^{\dag}=T^{-1}$,如果$R(T)^{\perp}=0$,以及$N(T)=0$.
+值得注意的是,并不是对于所有的$g\in Y$,$T^{\dag}g$有定义,假若$R(T)$不是闭集.
+
+令$\widetilde{T}:N(T)^{\perp}\to R(T),\widetilde{T}\varphi :=T\varphi ,$
+表示将$T$限制在$N(T)^{\perp}$上.
+因为$N(T)^{\perp}=N(T)\cap N(T)^{\perp}=\{ 0\}$
+以及$R(\widetilde{T})=R(T),$
+则有算子$\widetilde{T}$是可逆的.
+则Moore-Penrose 逆可被写成
+\begin{equation}
+T^{\dag}g=\widetilde{T}^{-1}Qg  
+\end{equation}
+其中$g\in D(T^{\dag}).$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Tikhonov正则化方法}
+
+\end{document}

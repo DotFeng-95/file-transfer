@@ -1,0 +1,323 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This file is a template using the "beamer" package to create slides for a talk or presentation
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+% MODIFIED by Jonathan Kew, 2008-07-06
+% The header comments and encoding in this file were modified for inclusion with TeXworks.
+% The content is otherwise unchanged from the original distributed with the beamer package.
+
+\documentclass[UTF8]{ctexbeamer}
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[utf8]{inputenc}
+% or whatever
+
+
+\usepackage{amsmath}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[\LaTeX 介绍] % (optional, use only with long paper titles)
+{\LaTeX 介绍}
+
+\subtitle
+{} % (optional)
+
+\author[龙汉清] % (optional, use only with lots of authors)
+{龙汉清\\
+15数学类韶峰班 }
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+{
+ 
+  数学与计算科学学院\\
+  湘潭大学
+}
+
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Short Occasion] % (optional)
+{10.20 / 数学院北楼114}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{大纲}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{大纲}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\section{\LaTeX 简介}
+
+\subsection[\LaTeX 的主要功能]{\LaTeX 的主要功能}
+
+\begin{frame}{\LaTeX 是什么?}\pause
+  % - A title should summarize the slide in an understandable fashion
+  %   for anyone how does not follow everything on the slide itself.
+\LaTeX 是一种排版系统.\pause
+
+
+主要功能: \pause
+  \begin{itemize}
+  \item 生成高质量的科技和数学类文档
+    \begin{itemize}
+    \item
+      学术论文
+    \item    
+      课堂讲义和课后笔记
+    \end{itemize}\pause
+  \item
+    生成其他简单或复杂种类的文档
+    \begin{itemize}
+    \item
+      信件, 个人简历等
+    \item
+      书籍, 其他专业类文档
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{与其他排版软件的比较}
+
+  优势: 
+  \begin{itemize}
+  \item
+    提供专业的版面设计\pause
+  \item
+    可以方便并且高效率地排版数学公式并且实现自动编号和交叉引用\pause
+  \item
+    使用的命令简单易懂, 方便修改长文档中复杂的项目\pause
+  \item
+	鼓励作者按照合理的结构写作\pause
+  \item
+	免费!
+  \item
+	$\cdots$
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{与其他排版软件的比较}
+
+不足: 
+  \begin{itemize}
+  \item
+    很难使用\LaTeX 来写结构不明组织无序的文档\pause
+  \item
+    debug 麻烦!
+  \item
+	$\cdots$
+  \end{itemize}
+\end{frame}
+
+
+\subsection{下载安装\LaTeX}
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz1.png}
+
+\end{frame}
+
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz2.png}
+
+\end{frame}
+
+
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz3.png}
+
+\end{frame}
+
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz4.png}
+
+\end{frame}
+
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz5.png}
+
+\end{frame}
+
+
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz6.png}
+
+\end{frame}
+
+
+\begin{frame}{下载安装}
+\includegraphics[height=5cm]{xz7.png}
+
+\end{frame}
+
+
+
+
+\section{\LaTeX 的基础使用}
+
+
+\subsection{\LaTeX 代码结构}
+
+\begin{frame}{基本结构}
+
+\includegraphics{ys1.png}
+
+\includegraphics{ys2.png}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{数学公式}
+
+\begin{frame}{行内公式}
+
+\$ 公式代码 \$
+
+
+\end{frame}
+
+\begin{frame}{行间公式}
+
+\$\$ 公式代码 \$\$ 
+
+或 $\backslash$[ 公式代码 $\backslash$]
+
+\end{frame}
+
+
+
+
+
+
+%
+%\section*{Summary}
+%
+%\begin{frame}{Summary}
+%
+%  % Keep the summary *very short*.
+%  \begin{itemize}
+%  \item
+%    The \alert{first main message} of your talk in one or two lines.
+%  \item
+%    The \alert{second main message} of your talk in one or two lines.
+%  \item
+%    Perhaps a \alert{third message}, but not more than that.
+%  \end{itemize}
+%  
+%  % The following outlook is optional.
+%  \vskip0pt plus.5fill
+%  \begin{itemize}
+%  \item
+%    Outlook
+%    \begin{itemize}
+%    \item
+%      Something you haven't solved.
+%    \item
+%      Something else you haven't solved.
+%    \end{itemize}
+%  \end{itemize}
+%\end{frame}
+
+
+\end{document}
+
+

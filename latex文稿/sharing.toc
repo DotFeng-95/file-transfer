@@ -1,0 +1,7 @@
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{上大学的目的}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{现在}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{将来}{4}{0}{1}
+\beamer@sectionintoc {2}{关于学习}{10}{0}{2}
+\beamer@subsectionintoc {2}{1}{为何学习}{10}{0}{2}
+\beamer@subsectionintoc {2}{2}{如何学习}{13}{0}{2}
